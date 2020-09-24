@@ -1,22 +1,22 @@
 #!/bin/bash
 
 echo "What is the publicly accessbile FQDN?"
-read leftid
+read leftId
 echo "What is the local reachable subnets? 0.0.0.0/0 for redirect gateway."
-read leftsubnet
+read leftSubnet
 echo "What is the virtual network subnet?"
-read rightsourceip
+read rightSourceIp
 echo "What are the domain controllers/dns servers? Comma seperated please"
-read rightdns
+read rightDns
 echo "What is the radius server IP?"
-read radiusserver
+read radiusServer
 
 mkdir /config/ipsec
-curl -o /config/ipsec/ipsec.conf https://github.com/dtc/ubnt/ipsec.conf
-curl -o /config/scripts/install.acme.sh https://github.com/dtc/install.acme.sh
-curl -o /config/scripts/post-config.d/ipsec-commit.sh https://github.com/dtc/ipsec-commit.sh
+curl -o /config/ipsec/ipsec.conf https://raw.githubusercontent.com/DTC-Inc/unifi-ikev2roadwarrior/master/conf/ipsec.conf
+curl -o /config/scripts/install.sh https://raw.githubusercontent.com/DTC-Inc/unifi-ikev2roadwarrior/mater/dep/install.sh
+curl -o /config/scripts/post-config.d/ipsec-commit.sh https://raw.githubusercontent.com/DTC-Inc/unifi-ikev2roadwarrior/master/ipsec-commit.sh
 
-bash /config/scripts/install.acme.sh
+bash /config/scripts/install.sh
 
 bash /config/scripts/renew.acme.sh -d $leftid
 
