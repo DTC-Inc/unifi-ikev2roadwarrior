@@ -1,0 +1,28 @@
+{
+	"system": {
+			"task-scheduler": {
+				"task": {
+                    "cert-renew": {
+                        "crontab-spec": "0 0 1 * *",
+						"executable": {
+							"arguments": "-d fqdn.example.com",
+							"path": "/config/scripts/renew.acme.sh"
+                        }
+                    },
+                    "ipsec-reload": {
+                        "crontab-spec": "5 0 1 * *",
+                        "executable": {
+                            "path": "/config/scripts/ipsec-reload.sh"
+                        }
+                    }
+            
+                }
+            }
+	},
+	"vpn": {
+        "ipsec": {
+            "include-ipsec-conf": "/config/ipsec/ipsec.conf",
+            "include-ipsec-secrets": "/config/ipsec/ipsec.secrets"
+        }
+	}
+}
